@@ -1,3 +1,13 @@
+import React from 'react';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Redirect
+// } from 'react-router-dom'
+
+import { PersonsList } from './features/person/PersonsList.js'
+
 function App() {
   const getJSON = async () => {
     fetch("http://localhost:3000/persons")
@@ -8,6 +18,9 @@ function App() {
   return (
     <div onClick={getJSON}>
       abdrahman
+      <React.Fragment>
+        <PersonsList />
+      </React.Fragment>
     </div>
   );
 }
