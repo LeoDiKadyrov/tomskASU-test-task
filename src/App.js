@@ -1,12 +1,13 @@
 import React from 'react';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Redirect
-// } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
 
 import { PersonsList } from './features/person/PersonsList.js'
+import { EditPersonForm } from './features/person/EditPersonForm.js'
 
 function App() {
   const getJSON = async () => {
@@ -16,12 +17,22 @@ function App() {
   }
 
   return (
-    <div onClick={getJSON}>
-      abdrahman
-      <React.Fragment>
-        <PersonsList />
-      </React.Fragment>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route 
+            exact
+            path="/"
+            render={() => (
+              <div onClick={getJSON}>
+                  <PersonsList />
+              </div>
+            )} />
+          <Route exact path="/editPerson/:personId" component={EditPersonForm} />
+          <Redirect to="/" />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
