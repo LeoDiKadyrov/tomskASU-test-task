@@ -9,6 +9,13 @@ import {
 import { PersonsList } from './features/person/PersonsList.js'
 import { EditPersonForm } from './features/person/EditPersonForm.js'
 
+// TODO:
+// [] - Получать список сущностей через асинхронные запросы на json-server
+// [] - Добавить удаление сущностей через запросы
+// [] - Редактирование через запросы
+// [] - UI оформление ???
+
+
 function App() {
   const getJSON = async () => {
     fetch("http://localhost:3000/persons")

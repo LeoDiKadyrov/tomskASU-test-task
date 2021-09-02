@@ -1,6 +1,5 @@
 import React , { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { nanoid } from '@reduxjs/toolkit'
 import { personAdded } from './personSlice'
 
 export const AddPersonForm = () => {
@@ -14,13 +13,7 @@ export const AddPersonForm = () => {
 
     const onSavePersonClicked = () => {
         if (firstName && lastName) {
-            dispatch(
-                personAdded({
-                    id: nanoid(),
-                    firstName,
-                    lastName
-                })
-            )
+            dispatch(personAdded(firstName, lastName))
         }
         setFirstName('')
         setLastName('')
