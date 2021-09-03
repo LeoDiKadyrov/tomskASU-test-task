@@ -17,12 +17,6 @@ import { EditPersonForm } from './features/person/EditPersonForm.js'
 
 
 function App() {
-  const getJSON = async () => {
-    fetch("http://localhost:3000/persons")
-      .then(response => response.json())
-      .then(data => console.log(data));
-  }
-
   return (
     <Router>
       <div className="App">
@@ -31,9 +25,7 @@ function App() {
             exact
             path="/"
             render={() => (
-              <div onClick={getJSON}>
                   <PersonsList />
-              </div>
             )} />
           <Route exact path="/editPerson/:personId" component={EditPersonForm} />
           <Redirect to="/" />

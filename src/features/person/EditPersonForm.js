@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { personUpdated } from './personSlice'
+import { selectPersonById } from './personSlice'
+
 
 export const EditPersonForm = ({ match }) => {
   const { personId } = match.params
 
-  const person = useSelector(state =>
-    state.persons.find(person => person.id === personId)
-  )
+  const person = useSelector(state => selectPersonById(state, personId))
 
   const [firstName, setFirstName] = useState(person.firstName)
   const [lastName, setLastName] = useState(person.lastName)

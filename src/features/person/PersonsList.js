@@ -1,10 +1,20 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { AddPersonForm } from './AddPersonForm.js'
 import { Link } from 'react-router-dom'
+import { selectAllPersons, fetchPersons } from './personSlice'
 
 export const PersonsList = () => {
-    const persons = useSelector(state => state.persons)
+    const dispatch = useDispatch()
+    const persons = useSelector(selectAllPersons)
+
+    const personStatus = useSelector(state => state.persons.status)
+
+    useEffect(() => {
+        if (personStatus === 'idle') {
+            dispatch(fetchPersons())
+        }
+    }, [personStatus, dispatch])
 
     const renderedPersons = persons.map(person => (
         <div key={person.id}>

@@ -5,6 +5,9 @@ import store  from "./app/store.js"
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import { fetchPersons } from './features/person/personSlice'
+
+store.dispatch(fetchPersons())
 
 ReactDOM.render(
   <Provider store={store}>
