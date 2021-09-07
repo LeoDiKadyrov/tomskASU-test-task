@@ -7,9 +7,8 @@ const initialState = {
 }
 
 export const fetchPersons = createAsyncThunk('', async () => {
-  const response = await fetch("/persons"),
-    resJSON = response.json()
-    return resJSON
+  const response = await fetch("http://localhost:3000/persons");
+  return response.json()
 })
 
 export const addNewPerson = createAsyncThunk(
@@ -65,13 +64,16 @@ export const personSlice = createSlice({
     builder
       .addCase(fetchPersons.pending, (state, action) => {
         state.status = 'loading'
+        console.log("pending", action);
       })
       .addCase(fetchPersons.fulfilled, (state, action) => {
         state.status = 'succeeded'
+        console.log("fulfilled", action);
         state.persons = state.persons.concat(action.payload)
       })
       .addCase(fetchPersons.rejected, (state, action) => {
         state.status = 'failed'
+        console.log("rejected", action);
         state.error = action.error.message
       })
       .addCase(addNewPerson.fulfilled, (state, action) => {

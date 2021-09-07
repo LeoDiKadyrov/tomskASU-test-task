@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AddPersonForm } from './AddPersonForm.js'
 import { Link } from 'react-router-dom'
 import { selectAllPersons, fetchPersons } from './personSlice'
+import { unwrapResult } from '@reduxjs/toolkit'
 
 export const PersonsList = () => {
     const dispatch = useDispatch()
@@ -12,7 +13,7 @@ export const PersonsList = () => {
 
     useEffect(() => {
         if (personStatus === 'idle') {
-            dispatch(fetchPersons())
+            dispatch(fetchPersons()).then(unwrapResult)
         }
     }, [personStatus, dispatch])
 
@@ -27,7 +28,6 @@ export const PersonsList = () => {
             <button>Удалить</button>
        </div>
     ));
-
     return (
         <section className="posts-list">
             <h2>Persons</h2>
