@@ -17,6 +17,8 @@ export const PersonsList = () => {
         }
     }, [personStatus, dispatch])
 
+    console.log("check commit");
+
     const renderedPersons = persons.map(person => (
         <div key={person.id}>
             {/* <p className="post-content">{person.id}</p> */}
